@@ -4,7 +4,7 @@ set et sts=3 sw=3
 set ai
 set backspace=indent,eol,start
 set number
-set colorcolumn=81
+autocmd FileType h,c,cpp set colorcolumn=81
 set bg=dark
 set guifont=Monaco\ 12
 
@@ -22,11 +22,15 @@ set wildmenu
 set clipboard+=unnamed
 set switchbuf=useopen,usetab
 set tags=./tegs,tags;/
-set scroll=5   " smooth scroll
-set spell spelllang=en_us     " spell check
+" smooth scroll
+set scroll=5
+" spell check
+" set spell spelllang=en_us
 
 " Remove trailing white space
-autocmd FileType c,cpp autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType h,c,cpp autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd BufNewFile,BufRead *.sel set ft=javascript
+autocmd BufNewFile,BufRead *.inc set ft=javascript
 
 " Note trailing space for other files that were not taken care of by the auto remove
 set listchars=tab:>-,trail:$
