@@ -4,12 +4,11 @@ set et sts=3 sw=3
 set ai
 set backspace=indent,eol,start
 set number
-autocmd FileType h,c,cpp set colorcolumn=81
+autocmd FileType h,c,cpp,sql,javascript,python set colorcolumn=81
+autocmd BufNewFile,BufRead *.m4 set colorcolumn=81
 set bg=dark
-set guifont=Monaco\ 12
 
 syntax enable 
-set nu
 set nocompatible               " be iMproved
 set autochdir
 set backspace=indent,eol,start
@@ -28,16 +27,18 @@ set scroll=5
 " set spell spelllang=en_us
 
 " Remove trailing white space
-autocmd FileType h,c,cpp autocmd BufWritePre <buffer> :%s/\s\+$//e
-autocmd BufNewFile,BufRead *.sel set ft=javascript
+"autocmd FileType h,c,cpp,m4,javascript,py autocmd BufWritePre <buffer> :%s/\s\+$//e
+"autocmd BufNewFile,BufRead *.m4 autocmd BufWritePre <buffer> :%s/\s\+$//e
+" Map file format, so that we get highlight
+"autocmd BufNewFile,BufRead *.sel set ft=javascript
 autocmd BufNewFile,BufRead *.inc set ft=javascript
+autocmd BufNewFile,BufRead *.m4  set ft=sql
 
 " Note trailing space for other files that were not taken care of by the auto remove
 set listchars=tab:>-,trail:$
 set list
 
-"" Set up colorscheme                                                                                                   
-                       
+"" Set up colorscheme
 colorscheme default
 highlight Cursor ctermfg=Yellow ctermbg=Yellow 
 
@@ -52,3 +53,12 @@ highlight SpellBad   ctermfg=White   ctermbg=Red       cterm=Underline
 " let g:kolor_bold=1
 " let g:kolor_underlined=0
 " let g:kolor_alternative_matchparen=0
+
+set guifont=Monaco\ 10
+
+if has('gui_running')
+      colorscheme solarized
+end
+
+"" Change to hard tab when kernel code
+"set noet sts=8 sw=8
