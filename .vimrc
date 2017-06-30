@@ -43,7 +43,7 @@ set list
 colorscheme default
 highlight Cursor ctermfg=Yellow ctermbg=Yellow 
 ""
-"" "" Set up completion menu
+"" Set up completion menu
 highlight Pmenu      ctermfg=Gray    ctermbg=DarkBlue  guifg=Cyan guibg=DarkBlue 
 highlight PmenuSel   ctermfg=White   ctermbg=DarkGreen cterm=Bold guifg=White guibg=DarkBlue gui=Bold 
 highlight PmenuSbar  ctermfg=White   ctermbg=DarkGreen            guibg=Cyan 
