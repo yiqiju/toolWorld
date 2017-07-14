@@ -6,25 +6,6 @@
 
 using namespace std;
 
-namespace
-{
-   // Convert date string to tm struct
-   void get_tm(string const& date, struct tm* t)
-   {
-      stringstream ss(date);
-      string month, day, year;
-
-      getline(ss, month, '/');
-      getline(ss, day, '/');
-      getline(ss, year, '/');
-
-      memset(t, 0, sizeof(struct tm));
-      t->tm_mday = stoi(day);
-      t->tm_mon = stoi(month) - 1;
-      t->tm_year = stoi(year) - 1900;
-   }
-}
-
 Promo::Promo(vector<string> const& input)
    : m_hotel_name(input[0])
    , m_price(stod(input[1]))
@@ -55,7 +36,8 @@ Promo::Promo(vector<string> const& input)
       m_valid = false;
    }
 
-   // TODO validate deal value
+   // TODO validate deal value, I should probably catch stod() exceptions
+   // when input data is invalid, can be improved.
 }
 
 string Promo::get_promo_text() const
@@ -74,11 +56,13 @@ bool Promo::can_apply_deal(string const& hotel_name,
 {
    if (hotel_name != """" && hotel_name != m_hotel_name)
    {
+      // When hotel name is not wild card, have to match the hotel name
       return false;
    }
 
    if (start_date < m_start_date || start_date > m_end_date)
    {
+      // Start date has to be in range
       return false;
    }
 
@@ -98,7 +82,8 @@ double Promo::get_promo_total(int32_t duration) const
 
    if (m_type == Promo_type::REBATE || m_type == Promo_type::REBATE_3PLUS)
    {
-      return retval * duration - m_deal_value;
+      // Use rebate calculation formular
+      return retval * duration + m_deal_value;
    }
 
    return retval * duration * (100 + m_deal_value) * 0.01;
