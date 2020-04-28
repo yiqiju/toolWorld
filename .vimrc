@@ -12,6 +12,11 @@ autocmd BufNewFile,BufRead *MIB.txt set filetype=mib
 autocmd BufNewFile,BufRead *MIB.txt set colorcolumn=81
 set bg=dark
 
+
+" status line config
+set laststatus=2
+set statusline+=%F%m\%=%#CursorColumn#\ %y\ %{&fileencoding?&fileencoding:&encoding}\[%{&fileformat}\]\ %p%%\ %l:%c
+
 syntax enable
 set nocompatible " be iMproved
 set autochdir
