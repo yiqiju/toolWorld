@@ -35,6 +35,11 @@ colo desert
 syntax on
 set guifont=Consolas:h11
 
+
+" status line config
+set laststatus=2
+set statusline+=%F%m\%=%#CursorColumn#\ %y\ %{&fileencoding?&fileencoding:&encoding}\[%{&fileformat}\]\ %p%%\ %l:%c
+
 set et sts=4 sw=4
 set listchars=tab:>-,trail:$,extends:>,precedes:<
 set list
